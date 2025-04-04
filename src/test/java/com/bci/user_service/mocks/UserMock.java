@@ -14,7 +14,7 @@ import java.util.UUID;
 import static com.bci.user_service.mocks.PhoneMock.mockPhoneDto;
 
 public class UserMock {
-    public static final String TOKEN_EX = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNjg0OGYwZi1mYzlhLTQ0ZjAtYTA0OC0yMTcwMTRhZGNhMmMiLCJpYXQiOjE3NDM3ODE2OTEsImV4cCI6MTc0Mzg2ODA5MX0.Uh9FRf2h64xrjlg4h6z3iosTBahkM4kRwbindxgiPSM";// UserRespDto
+    public static final String TOKEN_EX = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNjg0OGYwZi1mYzlhLTQ0ZjAtYTA0OC0yMTcwMTRhZGNhMmMiLCJpYXQiOjE3NDM3ODE2OTEsImV4cCI6MTc0Mzg2ODA5MX0.Uh9FRf2h64xrjlg4h6z3iosTBahkM4kRwbindxgiPSM";
     public static final UUID UUID_EX = UUID.fromString("b7fbf759-1204-42fa-8028-41cf68d4fff8");
     public static LocalDateTime now = LocalDateTime.now();
     public static User mockUserEntity(){

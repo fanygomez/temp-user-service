@@ -15,6 +15,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.UUID;
+
 import static com.bci.user_service.components.utils.constants.APIField.USER_API;
 import static com.bci.user_service.mocks.UserMock.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,34 +62,33 @@ class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
-    // Todo: al corregir el global handler descomentar
-//    @Test
-//    void getUserById() throws Exception {
-//        when(userService.getUserById(any(UUID.class)))
-//                .thenReturn(mockUserGetRespDto());
-//
-//        mockMvc.perform(get(USER_API.concat("/").concat(String.valueOf(UUID_EX)))
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .header("Authorization", "Bearer ".concat(TOKEN_EX))
-//                )
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+    @Test
+    void getUserById() throws Exception {
+        when(userService.getUserById(any(UUID.class)))
+                .thenReturn(mockUserGetRespDto());
+
+        mockMvc.perform(get(USER_API.concat("/").concat("26848f0f-fc9a-44f0-a048-217014adca2c"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization", "Bearer ".concat(TOKEN_EX))
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 //                .andExpect(jsonPath("$.id").exists())
 //                .andExpect(jsonPath("$.isActive").exists())
 //                .andExpect(jsonPath("$.token").value(mockUserRespDto().getToken()));
-//    }
-//    @Test
-//    void getUserById_tokenNoValid() throws Exception {
-//        when(userService.getUserById(any(UUID.class)))
-//                .thenReturn(mockUserGetRespDto());
-//
-//        mockMvc.perform(get(USER_API.concat("/").concat(String.valueOf(UUID_EX)))
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .header("Authorization", "Bearer ".concat(TOKEN_EX))
-//                )
-//                .andExpect(status().isBadRequest())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.message").exists())
-//                .andExpect(jsonPath("$.message").value("Token no valido"));
-//    }
+    }
+    @Test
+    void getUserById_tokenNoValid() throws Exception {
+        when(userService.getUserById(any(UUID.class)))
+                .thenReturn(mockUserGetRespDto());
+
+        mockMvc.perform(get(USER_API.concat("/").concat(String.valueOf(UUID_EX)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization", "Bearer ".concat(TOKEN_EX))
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message").exists())
+                .andExpect(jsonPath("$.message").value("Token no valido"));
+    }
 }

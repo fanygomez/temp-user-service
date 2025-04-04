@@ -1,15 +1,9 @@
 package com.bci.user_service.domain.models;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.UUID;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 //@Table(schema = "sch_security" ,name="tbl_user_phones")
 @Table(name="tbl_user_phones")
 @Entity
