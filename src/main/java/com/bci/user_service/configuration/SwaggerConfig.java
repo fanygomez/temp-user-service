@@ -22,8 +22,8 @@ public class SwaggerConfig {
                         .contact(new Contact().name("Soporte Técnico").email("stefhani@hotmail.com"))
                         .license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")))
                 .externalDocs(new ExternalDocumentation()
-                        .description("Documentación adicional")
-                        .url("https://example.com/docs"));
+                        .description("")
+                        .url("https://confluence.com/docs/user-service"));
     }
 
     @Bean

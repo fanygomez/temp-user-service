@@ -1,6 +1,5 @@
 package com.bci.user_service.controllers;
 
-import com.bci.user_service.dto.user.UserRespDto;
 import com.bci.user_service.dto.user.token.LoginReqDto;
 import com.bci.user_service.dto.user.token.LoginRespDto;
 import com.bci.user_service.service.IAuthService;
