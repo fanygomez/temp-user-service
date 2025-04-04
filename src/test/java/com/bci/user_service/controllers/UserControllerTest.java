@@ -60,7 +60,7 @@ class UserControllerTest {
      void getUserById_throwUnauthorized() throws Exception {
         mockMvc.perform(get(USER_API.concat("/").concat(String.valueOf(UUID_EX)))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isUnauthorized());
     }
     @Test
     void getUserById() throws Exception {
