@@ -14,7 +14,7 @@ import java.util.UUID;
 @Repository
 public interface IUserRepository extends JpaRepository<User, UUID> {
     Optional<User> findByEmailAndIsActiveIsTrue(String email);
-    Optional<User> findByTokenAndIsActiveIsTrue(String token);
+    boolean existsByTokenAndIsActiveIsTrue(String token);
     @Modifying
     @Transactional
     @Query("UPDATE User u SET u.token = :token, u.lastLogin = :lastLogin WHERE u.id = :userId")
