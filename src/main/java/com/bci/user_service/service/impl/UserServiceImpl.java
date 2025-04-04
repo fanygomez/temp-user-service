@@ -50,10 +50,9 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(passwordEncoder.encode(reqDto.getPassword()));
         user.setPhones(mapAndGetPhones(reqDto, user));
         user.setLastLogin(LocalDateTime.now());
-        user.setToken(jwtTokenService.generateToken(user.getId()));
 
         var userSaved = userRepository.save(user);
-        userSaved.setToken(jwtTokenService.generateToken(user.getId()));
+        userSaved.setToken(jwtTokenService.generateToken(userSaved.getId()));
 
         userRepository.updateToken(userSaved.getToken(), userSaved.getId());
 
@@ -65,7 +64,7 @@ public class UserServiceImpl implements IUserService {
     public UserGetRespDto getUserById(UUID id) {
         log.info("UserServiceImpl.getUserById {}", id);
         User userFound =  userRepository.findById(id).orElseThrow(
-                () ->  new GeneralException("No existe", HttpStatus.NOT_FOUND));
+                () ->  new GeneralException("No encontro data con ese identificador", HttpStatus.NOT_FOUND));
 
         return modelMapper.map(userFound, UserGetRespDto.class);
     }
