@@ -1,6 +1,7 @@
 package com.bci.user_service.components.advicer;
 
 import com.bci.user_service.components.exceptions.DuplicateDataException;
+import com.bci.user_service.components.exceptions.GeneralException;
 import com.bci.user_service.dto.base.ErrorResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(DuplicateDataException.class)
-    public ResponseEntity<Object> handleDuplicateEmailException(DuplicateDataException ex) {
-        log.error("GlobalExceptionHandler.handleDuplicateEmailException: {}", ex.getMessage());
+    public ResponseEntity<Object> handleDuplicateException(DuplicateDataException ex) {
+        log.error("GlobalExceptionHandler.handleDuplicateException: {}", ex.getMessage());
         return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.CONFLICT);
     }
 
@@ -53,6 +54,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponseDto(String.valueOf(errors)));
+    }
+
+    @ExceptionHandler(GeneralException.class)
+    public ResponseEntity<Object> handleGeneralException(GeneralException ex) {
+        log.error("GlobalExceptionHandler.handleGeneralException: {}", ex.getMessage());
+        return ResponseEntity
+                .status(ex.getHttpStatusCode())
+                .body(new ErrorResponseDto(String.valueOf(ex.getMessage())));
     }
 
 }
