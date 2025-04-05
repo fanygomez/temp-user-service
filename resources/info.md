@@ -1,1 +1,1 @@
-## Agregar diagrama
+## Agregar diagramas
