@@ -2,6 +2,7 @@ package com.bci.user_service.domain.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 //@Table(schema = "sch_security" ,name="tbl_user_phones")
@@ -57,5 +58,15 @@ public class Phone extends BaseEntity{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
+        this.setCreated(now);
+    }
+    @PreUpdate
+    public void preUpdate() {
+        this.setModified(LocalDateTime.now());
     }
 }

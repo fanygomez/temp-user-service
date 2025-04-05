@@ -16,18 +16,19 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI registrationOpenAPI() {
         return new OpenAPI()
+//                .openapi("3.1.3")
                 .info(new Info().title("User Auth API")
-                        .description("API para registro de usuarios  y generacion de token.")
+                        .description("API para registro de usuarios y generación de token.")
                         .version("v1.0")
                         .contact(new Contact().name("Soporte Técnico").email("stefhani@hotmail.com"))
                         .license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")))
                 .externalDocs(new ExternalDocumentation()
-                        .description("")
+                        .description("Documentación adicional")
                         .url("https://confluence.com/docs/user-service"));
     }
 
     @Bean
-    public GroupedOpenApi registrationApi() {
+    public GroupedOpenApi userApi() {
         return GroupedOpenApi.builder()
                 .group(ARTEFACT_ID)
                 .packagesToScan("com.bci.user_service.controllers","com.bci.user_service.dto")

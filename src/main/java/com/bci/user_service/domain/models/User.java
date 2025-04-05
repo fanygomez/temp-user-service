@@ -24,9 +24,6 @@ public class User extends BaseEntity {
     private String email;
 
     private String password;
-
-    private LocalDateTime created;
-    private LocalDateTime modified;
     private LocalDateTime lastLogin;
 
     private String token;
@@ -66,23 +63,6 @@ public class User extends BaseEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
-
     public LocalDateTime getLastLogin() {
         return lastLogin;
     }
@@ -118,13 +98,13 @@ public class User extends BaseEntity {
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
-        this.created = now;
+        this.setCreated(now);
         this.lastLogin = now;
         this.isActive = true;
     }
 
     @PreUpdate
     public void preUpdate() {
-        this.modified = LocalDateTime.now();
+        this.setModified(LocalDateTime.now());
     }
 }
