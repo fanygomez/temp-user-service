@@ -16,7 +16,7 @@ import static com.bci.user_service.mocks.PhoneMock.mockPhoneDto;
 public class UserMock {
     public static final String TOKEN_EX = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNjg0OGYwZi1mYzlhLTQ0ZjAtYTA0OC0yMTcwMTRhZGNhMmMiLCJpYXQiOjE3NDM3ODE2OTEsImV4cCI6MTc0Mzg2ODA5MX0.Uh9FRf2h64xrjlg4h6z3iosTBahkM4kRwbindxgiPSM";
     public static final UUID UUID_EX = UUID.fromString("b7fbf759-1204-42fa-8028-41cf68d4fff8");
-    public static LocalDateTime now = LocalDateTime.now();
+    public static LocalDateTime dateTime = LocalDateTime.of(2025,4,4,8,10);
     public static User mockUserEntity(){
         var user = new User();
         user.setId(UUID_EX);
@@ -24,9 +24,8 @@ public class UserMock {
         user.setEmail("stefhani.gomez@gmail.com");
         user.setPassword("$2a$10$rqWot6zLTr3djKH9DgRpveTmMGm.HMvkvOrElpcTlLhL6vf0XdCQa");
 
-        LocalDateTime now = LocalDateTime.now();
-        user.setCreated(now);
-        user.setModified(now);
+        user.setCreated(dateTime);
+        user.setModified(dateTime);
         user.setActive(true);
         user.setToken(TOKEN_EX);
         return user;
@@ -56,9 +55,8 @@ public class UserMock {
         var user = new UserGetRespDto();
         user.setId(UUID_EX);
         user.setName("Stefhani");
-        LocalDateTime now = LocalDateTime.now();
-        user.setCreated(now);
-        user.setModified(now);
+        user.setCreated(dateTime);
+        user.setModified(dateTime);
         user.setToken(TOKEN_EX);
         return user;
     }

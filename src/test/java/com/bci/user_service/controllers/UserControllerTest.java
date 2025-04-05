@@ -1,5 +1,7 @@
 package com.bci.user_service.controllers;
 
+import com.bci.user_service.components.jwt.JwtTokenService;
+import com.bci.user_service.domain.repositories.IUserRepository;
 import com.bci.user_service.dto.user.UserReqDto;
 import com.bci.user_service.service.IUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static com.bci.user_service.components.utils.constants.APIField.USER_API;
@@ -36,6 +39,10 @@ class UserControllerTest {
     ObjectMapper mapper;
     @Mock
     Logger log;
+    @Autowired
+    private JwtTokenService jwtTokenService;
+    @MockitoBean
+    IUserRepository userRepository;
     @BeforeEach
     void setUp() {
         mapper = new ObjectMapper();
@@ -64,31 +71,33 @@ class UserControllerTest {
     }
     @Test
     void getUserById() throws Exception {
+        var token = jwtTokenService.generateToken(UUID_EX);
+        mockUserGetRespDto().setToken(token);
+
+        when(userRepository.existsByTokenAndIsActiveIsTrue(token)).thenReturn(true);
+        when(userRepository.findById(any(UUID.class))).thenReturn(Optional.of(mockUserEntity()));
         when(userService.getUserById(any(UUID.class)))
                 .thenReturn(mockUserGetRespDto());
-
-        mockMvc.perform(get(USER_API.concat("/").concat("26848f0f-fc9a-44f0-a048-217014adca2c"))
+        mockMvc.perform(get(USER_API.concat("/").concat(String.valueOf(UUID_EX)))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .header("Authorization", "Bearer ".concat(TOKEN_EX))
+                        .header("Authorization", "Bearer ".concat(token))
                 )
-                .andExpect(status().isBadRequest())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-//                .andExpect(jsonPath("$.id").exists())
-//                .andExpect(jsonPath("$.isActive").exists())
-//                .andExpect(jsonPath("$.token").value(mockUserRespDto().getToken()));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").exists());
     }
     @Test
     void getUserById_tokenNoValid() throws Exception {
         when(userService.getUserById(any(UUID.class)))
                 .thenReturn(mockUserGetRespDto());
+        var token = jwtTokenService.generateToken(UUID_EX);
 
-        mockMvc.perform(get(USER_API.concat("/").concat(String.valueOf(UUID_EX)))
+        mockMvc.perform(get(USER_API.concat("/").concat("0255f11b-fe76-4bde-88a1-a7c2295bf8f3"))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .header("Authorization", "Bearer ".concat(TOKEN_EX))
+                        .header("Authorization", "Bearer ".concat(token))
                 )
                 .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.message").exists())
-                .andExpect(jsonPath("$.message").value("Token no valido"));
+                .andExpect(jsonPath("$.message").exists());
     }
 }

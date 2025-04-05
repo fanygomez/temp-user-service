@@ -5,21 +5,21 @@ services:
     image: user-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/registrationdb
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/management_db
+      - SPRING_DATASOURCE_USERNAME=usr_bci
+      - SPRING_DATASOURCE_PASSWORD=usr_bciPwd
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - postgres-db
 
-  db:
+  postgres-db:
     image: postgres:15
     environment:
-      POSTGRES_DB: registrationdb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: management_db
+      POSTGRES_USER: usr_bci
+      POSTGRES_PASSWORD: usr_bciPwd
     ports:
       - "5432:5432"
     volumes:

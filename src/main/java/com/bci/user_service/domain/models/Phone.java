@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-//@Table(schema = "sch_security" ,name="tbl_user_phones")
-@Table(name="tbl_user_phones")
+@Table(schema = "sch_security" ,name="tbl_user_phones")
 @Entity
 public class Phone extends BaseEntity{
     @Id

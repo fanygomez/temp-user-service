@@ -25,7 +25,7 @@
 ## Technologies
 - **Lenguaje y Frameworks:**
     - Java 21
-    - Spring Boot 3.4.4 (última versión estable compatible con Java 21)
+    - Spring Boot 3.4.4
 - **Persistencia y Base de Datos:**
     - Spring Data JPA
     - H2 (en desarrollo, configurable para otros entornos)

@@ -14,7 +14,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserGetRespDto extends UserRespDto implements Serializable {
     private String name;
-
+// todo: remover token de respuesta
     public String getName() {
         return name;
     }

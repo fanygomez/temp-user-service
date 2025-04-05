@@ -10,8 +10,7 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="tbl_users")
-//@Table(schema = "sch_security" ,name="tbl_users")
+@Table(schema = "sch_security" ,name="tbl_users")
 @Entity
 public class User extends BaseEntity {
     @Id

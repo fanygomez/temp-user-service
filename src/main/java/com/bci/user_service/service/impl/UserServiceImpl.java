@@ -117,7 +117,7 @@ public class UserServiceImpl implements IUserService {
         Set<String> uniquePhones = new HashSet<>();
         for (PhoneDto phone : phones) {
             if (!uniquePhones.add(phone.getNumber())) {
-                throw new DuplicateDataException("Existen teléfonos duplicados para el usuario");
+                throw new DuplicateDataException("No, no es posible registrar teléfonos duplicados. Verifique e intente de nuevo.");
             }
         }
     }
