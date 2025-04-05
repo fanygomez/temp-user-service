@@ -1,3 +1,6 @@
+-- DROP SCHEMA sch_security;
+
+CREATE SCHEMA if not exists sch_security AUTHORIZATION usr_bci;
 -- sch_security.tbl_users definition
 
 -- Drop table
