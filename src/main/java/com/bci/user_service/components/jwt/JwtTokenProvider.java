@@ -1,5 +1,6 @@
 package com.bci.user_service.components.jwt;
 
+import com.bci.user_service.components.exceptions.CustomAuthenticationException;
 import com.bci.user_service.components.exceptions.GeneralException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -71,7 +72,7 @@ public class JwtTokenProvider implements JwtTokenService{
                     .parseClaimsJws(token);
             return true;
         } catch (Exception ex) {
-            throw new GeneralException(ex.getMessage(), HttpStatus.BAD_REQUEST);
+            throw new GeneralException(ex.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }
 }
