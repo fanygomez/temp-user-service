@@ -6,7 +6,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 FROM build AS test
-RUN mvn test
+RUN echo "Running tests..." && mvn test
 
 FROM openjdk:21-jdk
 WORKDIR /app
