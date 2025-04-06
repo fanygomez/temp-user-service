@@ -1,20 +1,12 @@
 package com.bci.user_service.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.bci.user_service.components.utils.constants.GeneralField.LOCAL_DATE_TIME_FORMAT_PATTERN;
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserRespDto {
     private UUID id;
     private String token;
