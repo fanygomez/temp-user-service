@@ -58,7 +58,7 @@ class UserServiceImplTest {
         var exception = assertThrows(DuplicateDataException.class,() -> userService.saveUser(mockUserReqDto()));
 
         assertNotNull(exception);
-        assertEquals("El correo ya registrado", exception.getMessage());
+        assertEquals("El usuario ya existe.", exception.getMessage());
         verify(passwordEncoder,times(0)).encode(mockUserReqDto().getPassword());
     }
 
