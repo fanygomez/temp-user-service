@@ -22,7 +22,7 @@ public class UserReqDto implements Serializable {
     private String email;
     @NotBlank(message = "La contraseña es requerida")
     @ValidPasswordFormat
-    @Schema(name = "password", description = "name", example = "Test.01@")
+    @Schema(name = "password", description = "name", example = "Test@123")
     private String password;
     @NotNull(message = "La lista de teléfonos no puede ser nula")
     @Size(min = 1, message = "Debe incluir al menos un teléfono")

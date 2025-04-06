@@ -1,5 +1,6 @@
 package com.bci.user_service.controllers;
 
+import com.bci.user_service.dto.base.ErrorResponseDto;
 import com.bci.user_service.dto.user.token.LoginReqDto;
 import com.bci.user_service.dto.user.token.LoginRespDto;
 import com.bci.user_service.service.IAuthService;
@@ -48,7 +49,7 @@ public class AuthController {
                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = LoginRespDto.class))),
             @ApiResponse(responseCode = "401", description = "Credenciales inválidas.",
-                    content = @Content)
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDto.class)))
     })
     @PostMapping(value = "/token", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginRespDto> login(@Valid @RequestBody LoginReqDto reqDto) {

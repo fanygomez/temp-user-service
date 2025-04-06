@@ -75,7 +75,7 @@ public class UserServiceImpl implements IUserService {
         var userOpt =  userRepository.findByEmailAndIsActiveIsTrue(email);
 
         if (userOpt.isEmpty())
-            throw new GeneralException("email/password no valido", HttpStatus.NOT_FOUND);
+            throw new GeneralException("Credenciales inválidas",HttpStatus.UNAUTHORIZED);
 
         return userOpt.get();
     }
@@ -109,7 +109,7 @@ public class UserServiceImpl implements IUserService {
 
     private void userValidation(UserReqDto reqDto){
         if(userRepository.findByEmailAndIsActiveIsTrue(reqDto.getEmail()).isPresent()){
-            throw new DuplicateDataException("El correo ya registrado");
+            throw new DuplicateDataException("El usuario ya existe.");
         }
         validateUniquePhones(reqDto.getPhones());
     }

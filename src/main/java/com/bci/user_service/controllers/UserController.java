@@ -1,5 +1,6 @@
 package com.bci.user_service.controllers;
 
+import com.bci.user_service.dto.base.ErrorResponseDto;
 import com.bci.user_service.dto.user.UserReqDto;
 import com.bci.user_service.dto.user.UserRespDto;
 import com.bci.user_service.service.IUserService;
@@ -40,7 +41,9 @@ public class UserController {
             @ApiResponse(responseCode = "201", description = "Usuario registrado exitosamente",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserRespDto.class))),
             @ApiResponse(responseCode = "400", description = "Error en la validación de los datos de entrada",
-                    content = @Content(mediaType = "application/json"))
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDto.class))),
+            @ApiResponse(responseCode = "409", description = "El usuario ya existe",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDto.class)))
     })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserRespDto> saveUser(@Valid @RequestBody UserReqDto userReqDto) {
@@ -55,8 +58,8 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario encontrado y retornado",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserRespDto.class))),
-            @ApiResponse(responseCode = "401", description = "No autenticado", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content = @Content)
+            @ApiResponse(responseCode = "401", description = "No autenticado", content =  @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDto.class))),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content =  @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDto.class)))
     })
     @GetMapping("/{id}")
     public ResponseEntity<UserRespDto> getUserById(
