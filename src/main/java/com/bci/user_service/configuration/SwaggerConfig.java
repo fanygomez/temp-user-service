@@ -16,7 +16,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI registrationOpenAPI() {
         return new OpenAPI()
-//                .openapi("3.1.3")
+                .openapi("3.1.3")
                 .info(new Info().title("User Auth API")
                         .description("API para registro de usuarios y generación de token.")
                         .version("v1.0")
