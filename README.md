@@ -62,7 +62,7 @@ To start project, run:
 ```
 mvn spring-boot:run
 ```
-The API will then be available at [http://localhost:8080](http://localhost:8080).
+API disponible en [http://localhost:8080](http://localhost:8080).
 ## 2.3 Swagger Documentacion
 http://localhost:8080/swagger-ui.html
 ## 2.4 Acceder a la consola H2
@@ -71,7 +71,13 @@ http://localhost:8080/h2-console
 Utiliza las siguientes credenciales (por defecto):
 
     JDBC URL: jdbc:h2:mem:registrationdb
-    Username: sa
-    Password: usrTest.01
+    Username: usr_bci
+    Password: test123346
 
-## 
+## Set up con Docker compose
+docker-compose up --build -d
+
+```
+docker-compose up --build -d
+```
+API disponible en [http://localhost:8080](http://localhost:8080)
