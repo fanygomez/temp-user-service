@@ -12,9 +12,9 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
@@ -34,14 +34,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
-    @MockitoBean
+    @MockBean
     private IUserService userService;
     ObjectMapper mapper;
     @Mock
     Logger log;
     @Autowired
     private JwtTokenService jwtTokenService;
-    @MockitoBean
+    @MockBean
     IUserRepository userRepository;
     @BeforeEach
     void setUp() {

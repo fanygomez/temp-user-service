@@ -1,6 +1,5 @@
 package com.bci.user_service.components.jwt;
 
-import com.bci.user_service.components.exceptions.CustomAuthenticationException;
 import com.bci.user_service.components.exceptions.GeneralException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
