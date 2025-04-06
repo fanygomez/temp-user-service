@@ -75,7 +75,7 @@ public class UserServiceImpl implements IUserService {
         var userOpt =  userRepository.findByEmailAndIsActiveIsTrue(email);
 
         if (userOpt.isEmpty())
-            throw new GeneralException("No existe", HttpStatus.NOT_FOUND);
+            throw new GeneralException("email/password no valido", HttpStatus.NOT_FOUND);
 
         return userOpt.get();
     }
